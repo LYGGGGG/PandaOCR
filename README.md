@@ -15,6 +15,31 @@
 
 ------------
 
+### 命令行OCR工具（PaddleOCR）
+
+仓库新增 `paddle_ocr_app` 模块，提供一个基于 [PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR) 的轻量级命令行识别工具，可批量识别图片、导出文本/JSON并生成可视化标注图。
+
+**准备工作**
+
+```bash
+pip install paddlepaddle paddleocr pillow
+```
+
+根据设备选择合适的 `paddlepaddle` 版本即可，CPU/GPU 环境均支持。
+
+**使用示例**
+
+```bash
+python -m paddle_ocr_app tests/demo.png --output result.txt --json result.json --visualize visualize/
+```
+
+- 支持一次传入多个文件或文件夹，配合 `--recursive` 递归遍历图片。
+- 通过 `--min-confidence` 可以过滤低置信度结果，默认保留全部识别内容。
+- `--visualize` 会在指定目录输出叠加检测框的图片，可选 `--font` 指定中文字体，提升渲染效果。
+- 如果有自定义的模型文件，可分别使用 `--det-model-dir`、`--rec-model-dir`、`--cls-model-dir` 进行覆盖。
+
+------------
+
 #### 特别声明：
 - 本工具一直只在Github发布和更新，目前并没有所谓PandaOCR官网或熊猫OCR官网，从其他网站下载的PandaOCR请自行验证安全性！
 - 目前发现这个免费软件居然被有些可能生活困难的朋友拿到某宝上出售，导致买去用的人反而跑来找我当售后（这不厚道），这太难了，建议买的人找店主解决！
